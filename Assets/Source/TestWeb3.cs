@@ -89,9 +89,9 @@ public class TestWeb3 : MonoBehaviour {
 
 	// Use this for initialization
 	async void Start () {
-		this.PrivateKey = "b3c24a1e15c21620b68d919b447ed8c2c3afe778c2f9f3308504bcad81054f50";
+		this.PrivateKey = "ab5aef177d8e317bea7d76cbf5ac083e8be617891ff2089c4573cf63a15b9465";
 		this.Url = "http://localhost:8545";
-		string contractAddress = "0xbca3abeb004062e38f83068409204c48870a69bd";
+		string contractAddress = "0x0b0a24c1a001ad78dc43cccea4f3cf6c83c5676f";
 
 
 //		var account = new ManagedAccount(senderAddress, password);
@@ -104,6 +104,11 @@ public class TestWeb3 : MonoBehaviour {
 		// call sample
 		int ping = await contract.GetFunction("getPing").CallAsync<int>().ConfigureAwait(true);
 		Debug.Log ("ping: " + ping);
+
+
+		Nethereum.Hex.HexTypes.HexBigInteger balance = await web3.Eth.GetBalance.SendRequestAsync(address); 
+		Debug.Log ("Balance: " + balance.Value.ToString());
+
 
 		await MineAndGetReceiptAsync ();
 	}
