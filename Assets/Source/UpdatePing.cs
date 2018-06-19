@@ -12,7 +12,8 @@ public class UpdatePing : MonoBehaviour {
 	public UnityEngine.UI.InputField toAddressField;
 
 	public async void OnUpdatePingButton() {
-		await contractController.MineAndGetReceiptAsync(1111);
+		ulong data = System.Convert.ToUInt64 (amountField.text);
+		await contractController.MineAndGetReceiptAsync(data);
 	}
 
 	public async void OnTransferEth() {

@@ -103,6 +103,8 @@ public class ContractController : MonoBehaviour {
 //		string privateKey = "ab5aef177d8e317bea7d76cbf5ac083e8be617891ff2089c4573cf63a15b9465";
 //		string address = EthECKey.GetPublicAddress(privateKey); //could do checksum
 //		await GetBalance(address);
+
+		GetPing ();
 	}
 
 	public void LoadUser() {
@@ -150,7 +152,7 @@ public class ContractController : MonoBehaviour {
 
 
 
-	public async Task MineAndGetReceiptAsync(int ping){
+	public async Task MineAndGetReceiptAsync(ulong ping){
 
 		var setPingFunction = contract.GetFunction("setPint");
 		Nethereum.Contracts.Event pongEvent = contract.GetEvent("Pong");
