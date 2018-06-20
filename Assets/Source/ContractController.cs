@@ -17,6 +17,7 @@ using Nethereum.Signer;
 using Nethereum.Signer.Crypto;
 
 using System;
+using System.Net;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -80,7 +81,7 @@ public class ContractController : MonoBehaviour {
     }
   ]";
 
-	private string contractAddress = "0x0b0a24c1a001ad78dc43cccea4f3cf6c83c5676f";
+	private string contractAddress = "0x7b2348060aaf4a4cc40a198340c38a59a2c9741c";
 
 	private Web3 web3;
 	private Contract contract;
@@ -88,7 +89,8 @@ public class ContractController : MonoBehaviour {
 	public string privateKey;
 
 	//	private string privateKey = "ab5aef177d8e317bea7d76cbf5ac083e8be617891ff2089c4573cf63a15b9465";
-	private string url = "http://localhost:8545";
+	//private string url = "http://localhost:8545";
+	private string url = "https://ropsten.infura.io/hr1s0JoyZSF1c0aA2FoT";
 
 	public const string USER_ADDRESS	= "userAddress";
 	public const string USER_PRIVATEKEY	= "privateKey";
@@ -96,15 +98,18 @@ public class ContractController : MonoBehaviour {
 
 	// Use this for initialization
 	async void Start () {
+		ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 		this.web3 = new Web3(url);
 //		this.address = EthECKey.GetPublicAddress(privateKey); //could do checksum
 		this.contract = web3.Eth.GetContract(ABI, contractAddress);
+
+		Debug.Log (this.contract);
 
 //		string privateKey = "ab5aef177d8e317bea7d76cbf5ac083e8be617891ff2089c4573cf63a15b9465";
 //		string address = EthECKey.GetPublicAddress(privateKey); //could do checksum
 //		await GetBalance(address);
 
-		GetPing ();
+		//await GetPing ();
 	}
 
 	public void LoadUser() {
@@ -142,7 +147,7 @@ public class ContractController : MonoBehaviour {
 	}
 
 
-	public async void GetPing() {
+	public async Task GetPing() {
 //		this.address = EthECKey.GetPublicAddress(privateKey); //could do checksum
 		this.contract = web3.Eth.GetContract(ABI, contractAddress);
 

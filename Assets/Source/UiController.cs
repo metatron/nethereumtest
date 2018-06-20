@@ -11,7 +11,7 @@ public class UiController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-//		PlayerPrefs.DeleteAll ();
+		PlayerPrefs.DeleteAll ();
 		contractController.LoadUser ();
 		if (contractController.userAddress == null || contractController.userAddress == "") {
 			ActivateCreateUserPanel ();
